@@ -16,11 +16,12 @@
 		}
 	],
 	"require": {
-		"php": ">=7.1.0"
+		"php": ">=7.1.0",
+		"koldy/framework": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
-			"Koldy\\": "src/Koldy/"
+			"KoldyAdmin\\": "src/KoldyAdmin/"
 		}
 	}
 }
