@@ -1,9 +1,10 @@
 {
-	"name": "koldy/framework",
-	"type": "framework",
-	"description": "Koldy PHP framework for simple and rapid development",
+	"name": "koldy/admin",
+	"type": "library",
+	"description": "KoldyAdmin is lib for building structured HTTP responses needed for its frontend",
 	"keywords": [
-		"framework"
+		"library",
+		"admin"
 	],
 	"homepage": "http://koldy.net",
 	"license": "MIT",
