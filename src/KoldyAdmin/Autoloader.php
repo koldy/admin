@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace KoldyAdmin;
 
@@ -48,15 +48,11 @@ class Autoloader
     public function autoload(string $className): void
     {
         if (0 === strpos($className, $this->prefix)) {
-            if ($className === 'KoldyAdmin') {
-                require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'KoldyAdmin.php';
-            } else {
-                $parts = explode('\\', substr($className, $this->prefixLength));
-                $filepath = $this->directory . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $parts) . '.php';
+            $parts = explode('\\', substr($className, $this->prefixLength));
+            $filepath = $this->directory . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $parts) . '.php';
 
-                if (is_file($filepath)) {
-                    require $filepath;
-                }
+            if (is_file($filepath)) {
+                require $filepath;
             }
         }
     }
