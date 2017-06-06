@@ -3,7 +3,7 @@
 This library is backend helper for creating structured HTTP responses needed
 by Koldy Admin frontend.
 
-This project is currently in heavy development and it's still not recommended
+Project is currently in heavy development and it's still not recommended
 for usage on production, unless you know what's you're doing.
 
 ## Licence
