@@ -2,7 +2,7 @@
 
 namespace KoldyAdmin\Response;
 
-use KoldyAdmin;
+use KoldyAdmin\KoldyAdmin;
 use KoldyAdmin\Exception;
 
 /**

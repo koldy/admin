@@ -8,6 +8,7 @@ use Koldy\Application;
 use Koldy\Db\Model;
 use Koldy\Db\Where;
 use Koldy\Request;
+use KoldyAdmin\Config;
 use KoldyAdmin\Db\Traits\AccountTrait;
 use KoldyAdmin\Exception;
 
@@ -30,8 +31,6 @@ class AdminLoginHistory extends Model implements JsonSerializable
     protected static $table = 'admin_login_history';
 
     protected static $adapter = 'admin';
-
-    private const MAX_RECORDS_PER_USER = 100;
 
     use AccountTrait;
 
@@ -125,7 +124,9 @@ class AdminLoginHistory extends Model implements JsonSerializable
             $proxyIp = null;
         }
 
-        $record = static::select()->field('id')->field('request_at')->limit(self::MAX_RECORDS_PER_USER - 1, 1)->orderBy('id', 'desc')->fetchFirstObj();
+        $config = Config::getConfig();
+        $maxRecordsPerUser = $config->has('users') ? $config->getArrayItem('users', 'max_sign_in_records_per_user', 100) : 100;
+        $record = static::select()->field('id')->field('request_at')->limit($maxRecordsPerUser - 1, 1)->orderBy('id', 'desc')->fetchFirstObj();
 
         if ($record !== null) {
             static::delete(Where::init()

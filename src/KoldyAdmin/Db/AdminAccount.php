@@ -6,7 +6,6 @@ use DateTime;
 use JsonSerializable;
 use Koldy\Application;
 use Koldy\Db\Model;
-use Koldy\Db\Exception as DbException;
 use Koldy\Db\Query\ResultSet;
 use KoldyAdmin\AdminAccount\Meta;
 use KoldyAdmin\Exception;
