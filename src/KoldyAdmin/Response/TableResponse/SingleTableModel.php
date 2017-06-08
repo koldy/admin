@@ -107,7 +107,7 @@ class SingleTableModel extends AbstractTableResponse
         }
 
         if ($searchableFields !== null) {
-            $searchableFields = $this->use['searchable_fields'];
+            $searchableFields = $this->searchableFields;
         } else if ($data->searchable_fields !== null) {
             $searchableFields = explode(',', $data->searchable_fields);
         }
