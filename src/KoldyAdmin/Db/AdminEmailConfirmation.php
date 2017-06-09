@@ -21,6 +21,10 @@ class AdminEmailConfirmation extends Model
 
     protected static $adapter = 'admin';
 
+    protected static $primaryKey = ['account_id', 'email_id'];
+
+    protected static $autoIncrement = false;
+
     private const HASH_LENGTH = 24;
 
     /**
