@@ -6,6 +6,7 @@ use DateTime;
 use JsonSerializable;
 use Koldy\Db\Model;
 use KoldyAdmin\Db\Traits\AccountTrait;
+use KoldyAdmin\Db\Traits\CreatedAtTrait;
 
 /**
  * Class AdminEmail
@@ -25,6 +26,7 @@ class AdminEmail extends Model implements JsonSerializable
     protected static $adapter = 'admin';
 
     use AccountTrait;
+    use CreatedAtTrait;
 
     /**
      * @return int
@@ -51,23 +53,23 @@ class AdminEmail extends Model implements JsonSerializable
     }
 
     /**
-     * @return DateTime
+     * @return null|string
      */
-    public function getCreatedAt(): DateTime
+    public function getVerifiedAt(): ?string
     {
-        return new DateTime($this->created_at);
+        return $this->verified_at;
     }
 
     /**
      * @return DateTime
      */
-    public function getVerifiedAt(): ?DateTime
+    public function getVerifiedAtDateTime(): ?DateTime
     {
         if ($this->verified_at === null) {
             return null;
         }
 
-        return new DateTime($this->verified_at);
+        return new DateTime($this->getVerifiedAt());
     }
 
     /**
