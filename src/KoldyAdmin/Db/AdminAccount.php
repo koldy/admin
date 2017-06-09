@@ -7,7 +7,10 @@ use JsonSerializable;
 use Koldy\Application;
 use Koldy\Db\Model;
 use Koldy\Db\Query\ResultSet;
+use Koldy\Log;
+use Koldy\Mail;
 use KoldyAdmin\AdminAccount\Meta;
+use KoldyAdmin\Config;
 use KoldyAdmin\Exception;
 
 /**
@@ -252,6 +255,35 @@ class AdminAccount extends Model implements JsonSerializable
     }
 
     /**
+     * Send text to all emails of this account
+     *
+     * @param string $subject
+     * @param string $text
+     *
+     * @return AdminEmail[]
+     */
+    public function notifyAllEmails(string $subject, string $text): array
+    {
+        $emails = $this->getEmails();
+        $sentTo = [];
+
+        foreach ($emails as $email) {
+            if ($email->isVerified()) {
+                Mail::create()
+                  ->to($email->getEmail())
+                  ->from(Config::noReplyEmail())
+                  ->subject($subject)
+                  ->body($text)
+                  ->send();
+
+                $sentTo[] = $email;
+            }
+        }
+
+        return $sentTo;
+    }
+
+    /**
      * @param bool $load
      *
      * @return Meta
@@ -298,6 +330,14 @@ class AdminAccount extends Model implements JsonSerializable
     public function __toString()
     {
         return "Admin #{$this->getId()} name={$this->getFullName()} group_id={$this->getGroupId()}";
+    }
+
+    /**
+     * Use this account as "who" identifier in logs
+     */
+    public function useInLogs(): void
+    {
+        Log::setWho(trim("#{$this->getId()} {$this->getFullName()}"));
     }
 
     /**

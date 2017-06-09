@@ -109,4 +109,9 @@ class AdminEmailConfirmation extends Model
 
         return $record;
     }
+
+    public function __toString()
+    {
+        return "AdminEmailConfirmation account_id={$this->getAccountId()} email_id={$this->getEmailId()}";
+    }
 }

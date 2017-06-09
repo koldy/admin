@@ -111,4 +111,9 @@ class AdminEmail extends Model implements JsonSerializable
           'verified_at' => $this->getVerifiedAt()
         ];
     }
+
+    public function __toString()
+    {
+        return "AdminEmail #{$this->getId()} email={$this->getEmail()}";
+    }
 }

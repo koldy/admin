@@ -168,4 +168,9 @@ class AdminLoginHistory extends Model implements JsonSerializable
           'screen_height' => $this->getScreenHeight()
         ];
     }
+
+    public function __toString()
+    {
+        return "AdminLoginHistory #{$this->getId()} account_id={$this->getAccountId()}";
+    }
 }

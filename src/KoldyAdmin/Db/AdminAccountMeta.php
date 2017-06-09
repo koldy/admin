@@ -47,5 +47,8 @@ class AdminAccountMeta extends Model
         return $this->key_value;
     }
 
-
+    public function __toString()
+    {
+        return "AccountMeta account_id={$this->getAccountId()} name={$this->getKey()}";
+    }
 }

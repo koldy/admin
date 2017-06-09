@@ -44,4 +44,9 @@ class AdminGroupAcl extends Model
         return $this->acl_key;
     }
 
+    public function __toString()
+    {
+        return "AdminGroupAcl group_id={$this->getGroupId()} key={$this->getAclKey()}";
+    }
+
 }

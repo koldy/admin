@@ -77,4 +77,9 @@ class AdminEmailArchive extends Model
         return $this->verified_at !== null;
     }
 
+    public function __toString()
+    {
+        return "AdminEmailArchive #{$this->getId()} email={$this->getEmail()}";
+    }
+
 }
