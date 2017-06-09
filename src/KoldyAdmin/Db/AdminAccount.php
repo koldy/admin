@@ -304,7 +304,7 @@ class AdminAccount extends Model implements JsonSerializable
     /**
      * @return ResultSet
      */
-    public function getAccountsListResultSet(): ResultSet
+    public static function getAccountsListResultSet(): ResultSet
     {
         /** @var ResultSet $resultSet */
         $resultSet = static::resultSet()
