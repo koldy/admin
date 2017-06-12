@@ -268,7 +268,7 @@ class AdminAccount extends Model implements JsonSerializable
         $sentTo = [];
 
         foreach ($emails as $email) {
-            if ($email->isVerified()) {
+            if ($email->isVerified() && $email->getEmail() != 'admin@admin.com') {
                 Mail::create()
                   ->to($email->getEmail())
                   ->from(Config::noReplyEmail())
