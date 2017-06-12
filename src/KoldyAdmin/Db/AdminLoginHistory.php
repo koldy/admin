@@ -43,9 +43,17 @@ class AdminLoginHistory extends Model implements JsonSerializable
     }
 
     /**
+     * @return string
+     */
+    public function getRequestAt(): string
+    {
+        return $this->request_at;
+    }
+
+    /**
      * @return DateTime
      */
-    public function getRequestAt(): DateTime
+    public function getRequestAtDateTime(): DateTime
     {
         return new DateTime($this->request_at);
     }
@@ -160,7 +168,7 @@ class AdminLoginHistory extends Model implements JsonSerializable
     {
         return [
           'id' => $this->getId(),
-          'request_at' => $this->getRequestAt()->format('Y-m-d H:i:s'),
+          'request_at' => $this->getRequestAt(),
           'is_success' => $this->isSuccess(),
           'uas' => $this->getUas(),
           'ip' => $this->getIp(),
