@@ -7,6 +7,7 @@ use JsonSerializable;
 use Koldy\Application;
 use Koldy\Db\Model;
 use Koldy\Db\Query\ResultSet;
+use Koldy\Filesystem\Directory;
 use Koldy\Log;
 use Koldy\Mail;
 use KoldyAdmin\AdminAccount\Meta;
@@ -324,7 +325,13 @@ class AdminAccount extends Model implements JsonSerializable
      */
     public function getStorageDirectory(): string
     {
-        return Application::getStoragePath("account/{$this->getId()}/");
+        $dir = Application::getStoragePath("account/{$this->getId()}");
+
+        if (!is_dir($dir)) {
+            Directory::mkdir($dir);
+        }
+
+        return $dir . '/';
     }
 
     public function __toString()
